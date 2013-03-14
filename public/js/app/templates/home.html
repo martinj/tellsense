@@ -1,0 +1,22 @@
+<div class="row-fluid">
+	<div class="span2">
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+				<li class="nav-header">Sensors</li>
+				{{each(i, sensor) sensors}}
+					<li><a href="#/sensor/${sensor.id}/temp/1">${sensor.name}</a></li>
+				{{/each}}
+
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+		<div class="row-fluid">
+			{{each(i, sensor) sensors}}
+			<div class="span2">
+				<div id="sensor-temp-${sensor.id}" style="height:250px"></div>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+</div>

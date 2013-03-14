@@ -1,0 +1,33 @@
+{
+  "name": "tellsense",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Martin Jonsson <martin.jonsson@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "start": "node app",
+    "test": "node_modules/.bin/jshint --config .jshint.conf app.js lib/ routes/ test/ && node_modules/.bin/mocha test/*",
+    "logger": "node bin/cli-sensor-logger.js"
+  },
+  "dependencies": {
+    "express": "3.1.0",
+    "ejs": "*",
+    "oauth": "~0.9.9",
+    "when": "~1.8.1",
+    "redis": "~0.8.2",
+    "underscore": "~1.4.4",
+    "moment": "~2.0.0",
+    "monk": "~0.7.1",
+    "debug": "~0.7.2"
+  },
+  "devDependencies": {
+    "mocha": "1.4.x",
+    "nock" : "0.16.x",
+    "sinon": "~1.6.0",
+    "jshint": "*",
+    "chai": "*"
+  }
+}
