@@ -6,6 +6,7 @@ require({
 		'backbone': '../vendor/backbone-min',
 		'underscore': '../vendor/underscore-min',
 		'highcharts': '../vendor/highcharts/highcharts',
+		'highstock': '../vendor/highcharts/highstock',
 		'highcharts.more': '../vendor/highcharts/highcharts-more'
 	},
 
@@ -17,8 +18,9 @@ require({
 			exports: 'Backbone'
 		},
 		'underscore': { exports: '_' },
-		'_highcharts': { exports: 'HighCharts' },
-		'highcharts.more': ['highcharts']
+		'highcharts': { exports: 'HighCharts' },
+		'highstock': { exports: 'HighCharts' },
+		'highcharts.more': ['highcharts', 'highstock']
 	}
 },
 [

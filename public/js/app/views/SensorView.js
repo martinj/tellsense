@@ -2,7 +2,7 @@ define(function (require) {
 	var $ = require('jquery'),
 		Backbone = require('backbone'),
 		template = $.template(null, require('text!templates/sensor.html')),
-		HighCharts = require('highcharts');
+		HighCharts = require('highstock');
 
 	/**
 	 * Creates a new instance of this view class.
@@ -10,13 +10,6 @@ define(function (require) {
 	 */
 	return Backbone.View.extend({
 		className: 'container-fluid',
-
-		/**
-		 * Will be called when creating the instance.
-		 */
-		initialize: function (options) {
-			this.listenTo(options.router, 'route:sensor', this.updateActiveMenu);
-		},
 
 		/**
 		 * Render the HTML for this view
@@ -28,18 +21,6 @@ define(function (require) {
 		},
 
 		/**
-		 * Update sidebar menus active link,
-		 * it recieves data from the route event
-		 * @param  {Number} id
-		 * @param  {String} type
-		 * @param  {Number} days
-		 */
-		updateActiveMenu: function (id, type, days) {
-			this.$('ul.nav li').removeClass('active');
-			this.$('ul.nav li.' + type + '[data-days=' + days + ']').addClass('active');
-		},
-
-		/**
 		 * Render chart
 		 */
 		renderChart: function () {
@@ -48,32 +29,41 @@ define(function (require) {
 				this.chart.destroy();
 			}
 
-			// var series = this.model.get('chartData').filter(function (item, i) {
-			// 	return i % 10 == 0;
-			// });
-
 			var $div = $('<div>');
 			this.$('.chart-container').html($div);
 
-			this.chart = new Highcharts.Chart({
+			this.chart = new Highcharts.StockChart({
 				chart: {
-					renderTo: $div.get(0),
 					type: 'spline',
+					renderTo: $div.get(0),
 					zoomType: 'x'
-					// marginRight: 130,
-					// marginBottom: 30
 				},
-				lineWidth: 1,
-				plotOptions: {
-					series: {
-						marker: {
-							radius: 2
-						}
-					}
-				},
-				title: {
-					text: 'Sensor Temperature',
-					x: -20 //center
+				rangeSelector: {
+					buttons: [{
+						type: 'day',
+						count: 1,
+						text: '1d'
+					}, {
+						type: 'week',
+						count: 1,
+						text: '1w'
+					}, {
+						type: 'month',
+						count: 1,
+						text: '1m'
+					}, {
+						type: 'month',
+						count: 6,
+						text: '6m'
+					}, {
+						type: 'year',
+						count: 1,
+						text: '1y'
+					}, {
+						type: 'all',
+						text: 'All'
+					}],
+					selected: 3
 				},
 				xAxis: {
 					type: 'datetime',
@@ -84,21 +74,64 @@ define(function (require) {
 						year: '%b'
 					}
 				},
-				yAxis: {
+				yAxis: [{
+					labels: {
+						formatter: function () {
+							return this.value.toFixed(1) + '°C';
+						},
+						style: {
+							color: '#A00000'
+						}
+					},
 					title: {
-						text: 'Temperature (°C)'
+						text: 'Temperature',
+						style: {
+							color: '#A00000'
+						}
 					}
-				},
+				}, {
+					title: {
+						text: 'Humidity',
+						style: {
+							color: '#4572A7'
+						}
+					},
+					labels: {
+						formatter: function () {
+							return this.value.toFixed(1) + '%';
+						},
+						style: {
+							color: '#4572A7'
+						}
+					},
+					opposite: true
+				}],
 				tooltip: {
 					formatter: function () {
-						return '<b>' + this.series.name + '</b><br/>' +
-						Highcharts.dateFormat('%a %y-%m-%d %H:%M', this.x) + ': ' + this.y + '°C';
+						return Highcharts.dateFormat('%a %Y-%m-%d %H:%M', this.x) + '<br>' +
+							'Temperature: ' + this.points[0].y.toFixed(1) + '°C<br>' +
+							'Humidity: ' + this.points[1].y.toFixed(1) + '%';
 					}
 				},
+				legend: {
+					layout: 'vertical',
+					align: 'left',
+					x: 90,
+					verticalAlign: 'top',
+					y: 40,
+					floating: true,
+					enabled: true,
+					backgroundColor: '#FFFFFF'
+				},
 				series: [{
-					name: 'Fermentation Fridge',
-					// data: series
-					data: this.model.get('chartData')
+					name: 'Temperature',
+					data: this.model.get('chartData').temp,
+					color: '#A00000'
+				}, {
+					name: 'Humididty',
+					yAxis: 1,
+					data: this.model.get('chartData').humidity,
+					color: '#4572A7'
 				}]
 			});
 		}

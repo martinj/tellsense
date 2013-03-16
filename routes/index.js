@@ -13,12 +13,22 @@ exports.sensorChartData = function (req, res, next) {
 		if (err) {
 			next(err);
 		}
-		var seriesData = [];
+		var series = {
+			temp: [],
+			humidity: []
+		};
+
 		data.forEach(function (item) {
-			seriesData.push([new Date(item.lastUpdated).getTime(), item[req.params.key]]);
+			var time = new Date(item.lastUpdated).getTime();
+			if (item.temp) {
+				series.temp.push([time, item.temp]);
+			}
+			if (item.temp) {
+				series.humidity.push([time, item.humidity]);
+			}
 		});
 
-		res.json(seriesData);
+		res.json(series);
 	});
 
 };
