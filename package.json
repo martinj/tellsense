@@ -21,11 +21,14 @@
     "underscore": "~1.4.4",
     "moment": "~2.0.0",
     "monk": "~0.7.1",
-    "debug": "~0.7.2"
+    "debug": "~0.7.2",
+    "passport": "~0.1.16",
+    "passport-local": "~0.1.6",
+    "connect-flash": "~0.1.0"
   },
   "devDependencies": {
     "mocha": "1.4.x",
-    "nock" : "0.16.x",
+    "nock": "0.16.x",
     "sinon": "~1.6.0",
     "jshint": "*",
     "chai": "*"

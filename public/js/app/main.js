@@ -4,6 +4,7 @@ require({
 		'jquery': '../vendor/jquery.min',
 		'jquery.tmpl': '../vendor/jquery.tmpl.min',
 		'backbone': '../vendor/backbone-min',
+		'bootstrap': '../vendor/bootstrap.min',
 		'underscore': '../vendor/underscore-min',
 		'highcharts': '../vendor/highcharts/highcharts',
 		'highstock': '../vendor/highcharts/highstock',
@@ -13,6 +14,7 @@ require({
 	shim: {
 		'jquery': { exports: '$' },
 		'jquery.tmpl': ['jquery'],
+		'bootstrap': ['jquery'],
 		'backbone': {
 			deps: ['underscore', 'jquery'],
 			exports: 'Backbone'
@@ -32,7 +34,8 @@ function (require) {
 		'jquery',
 		'app',
 		'jquery.tmpl',
-		'highcharts.more'
+		'highcharts.more',
+		'bootstrap'
 	], function ($, App) {
 		$(function () {
 			var app = new App();

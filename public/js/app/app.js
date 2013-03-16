@@ -1,4 +1,4 @@
-define(function (require) {
+define(function (require, exports, module) {
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
@@ -7,6 +7,8 @@ define(function (require) {
 		SensorView = require('views/SensorView'),
 		TopMenuView = require('views/TopMenuView'),
 		SensorCollection = require('collections/SensorCollection');
+
+	var moduleConfig = module.config();
 
 	return Backbone.Router.extend({
 		routes: {
@@ -19,7 +21,7 @@ define(function (require) {
 		 */
 		initialize: function () {
 			this.$mainDiv = $('#content');
-			this.topMenuView = new TopMenuView({ router: this });
+			this.topMenuView = new TopMenuView({ router: this, username: moduleConfig.user });
 			this.sensorViews = {};
 			this.sensors = new SensorCollection();
 			this.homeView = new HomeView({ collection: this.sensors });

@@ -14,6 +14,7 @@ define(function (require) {
 		 * Will be called when creating the instance.
 		 */
 		initialize: function (options) {
+			this.username = options.username;
 			this.listenTo(options.router, 'route', this.updateActiveMenu);
 		},
 
@@ -21,7 +22,7 @@ define(function (require) {
 		 * Render the HTML for this view
 		 */
 		render: function () {
-			this.$el.html($.tmpl(template, {}));
+			this.$el.html($.tmpl(template, { username: this.username }));
 			return this;
 		},
 

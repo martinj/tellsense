@@ -3,7 +3,7 @@ var db = require('../lib/db'),
 	moment = require('moment');
 
 exports.index = function (req, res) {
-	res.render('index', { title: 'TellSense' });
+	res.render('index', { title: 'TellSense', user: req.user || false});
 };
 
 exports.sensorChartData = function (req, res, next) {
