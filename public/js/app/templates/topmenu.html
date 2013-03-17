@@ -5,14 +5,14 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="brand" href="#">Telldus Sensors</a>
+		<a class="brand" href="#">Tellsense</a>
 		<div class="nav-collapse collapse">
 			{{if username}}
 			<ul class="nav pull-right">
 				<li>
 					<div class="btn-group">
-						<a class="btn btn-small btn-inverse" href="#"><i class="icon-user icon-white"></i> ${username}</a>
-						<a class="btn btn-small btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+						<button class="btn btn-small"><i class="icon-user"></i> ${username}</button>
+						<button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
 						<ul class="dropdown-menu pull-right">
 							<li>
 								<a href="/logout"><i class="icon-off"></i> Logout</a>
@@ -24,8 +24,16 @@
 			{{/if}}
 			<ul class="nav">
 				<li class="home"><a href="#">Home</a></li>
+				<li class="about"><a href="#/about">About</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sensors <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						{{each(i, sensor) sensors}}
+						<li><a href="#/sensor/${sensor.id}/temp/365">${sensor.name}</a></li>
+						{{/each}}
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
-

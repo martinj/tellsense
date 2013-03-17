@@ -6,13 +6,15 @@ define(function (require, exports, module) {
 		HomeView = require('views/HomeView'),
 		SensorView = require('views/SensorView'),
 		TopMenuView = require('views/TopMenuView'),
-		SensorCollection = require('collections/SensorCollection');
+		SensorCollection = require('collections/SensorCollection'),
+		tmplAbout = $.template(null, require('text!templates/about.html'));
 
 	var moduleConfig = module.config();
 
 	return Backbone.Router.extend({
 		routes: {
 			'': 'home',
+			'about': 'about',
 			'sensor/:id/:type/:days': 'sensor'
 		},
 
@@ -21,9 +23,9 @@ define(function (require, exports, module) {
 		 */
 		initialize: function () {
 			this.$mainDiv = $('#content');
-			this.topMenuView = new TopMenuView({ router: this, username: moduleConfig.user });
 			this.sensorViews = {};
 			this.sensors = new SensorCollection();
+			this.topMenuView = new TopMenuView({ router: this, username: moduleConfig.user, sensors: this.sensors });
 			this.homeView = new HomeView({ collection: this.sensors });
 		},
 
@@ -43,6 +45,13 @@ define(function (require, exports, module) {
 		home: function () {
 			this.$mainDiv.html(this.homeView.render().el);
 			this.homeView.renderSensorGauges();
+		},
+
+		/**
+		 * About route
+		 */
+		about: function () {
+			this.$mainDiv.html($.tmpl(tmplAbout, {}));
 		},
 
 		/**

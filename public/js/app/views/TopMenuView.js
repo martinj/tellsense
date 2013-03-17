@@ -8,13 +8,15 @@ define(function (require) {
 	 * @constructor
 	 */
 	return Backbone.View.extend({
-		className: 'navbar navbar-inverse navbar-fixed-top',
+		className: 'navbar navbar-fixed-top',
 
 		/**
 		 * Will be called when creating the instance.
 		 */
 		initialize: function (options) {
+			this.sensors = options.sensors;
 			this.username = options.username;
+			this.listenTo(this.sensors, 'reset', this.render);
 			this.listenTo(options.router, 'route', this.updateActiveMenu);
 		},
 
@@ -22,7 +24,10 @@ define(function (require) {
 		 * Render the HTML for this view
 		 */
 		render: function () {
-			this.$el.html($.tmpl(template, { username: this.username }));
+			this.$el.html($.tmpl(template, {
+				username: this.username,
+				sensors: this.sensors.toJSON()
+			}));
 			return this;
 		},
 
