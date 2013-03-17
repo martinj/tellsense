@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="row">
 	<div class="span2">
 		<div class="well sidebar-nav">
 			<ul class="nav nav-list">
@@ -11,12 +11,27 @@
 		</div>
 	</div>
 	<div class="span10">
-		<div class="row-fluid">
-			{{each(i, sensor) sensors}}
-			<div class="span2">
-				<div id="sensor-temp-${sensor.id}" style="height:250px"></div>
-			</div>
-			{{/each}}
-		</div>
+		<!-- <div class="row-fluid"> -->
+			<ul class="thumbnails">
+				{{each(i, sensor) sensors}}
+					<li class="span2">
+						<div class="caption latest-readings">
+							<h5>${sensor.name}</h5>
+							<div>
+								{{if sensor.latestReading.temp}}
+								<span class="icon icon-temp"></span><span class="sensor-value">${sensor.latestReading.temp}°C</span>
+								{{/if}}
+								{{if sensor.latestReading.humidity}}
+								<span class="icon icon-humidity"></span><span class="sensor-value">${sensor.latestReading.humidity}%</span>
+								{{/if}}
+								{{if sensor.latestReading.lastUpdated}}
+								<div class="timeago">${moment(sensor.latestReading.lastUpdated).fromNow()}</div>
+								{{/if}}
+							</div>
+						</div>
+					</li>
+				{{/each}}
+			<ul>
+		<!-- </div> -->
 	</div>
 </div>

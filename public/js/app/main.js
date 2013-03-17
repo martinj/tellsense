@@ -5,6 +5,7 @@ require({
 		'jquery.tmpl': '../vendor/jquery.tmpl.min',
 		'backbone': '../vendor/backbone-min',
 		'bootstrap': '../vendor/bootstrap.min',
+		'moment': '../vendor/moment.min',
 		'underscore': '../vendor/underscore-min',
 		'highcharts': '../vendor/highcharts/highcharts',
 		'highstock': '../vendor/highcharts/highstock',
@@ -19,6 +20,7 @@ require({
 			deps: ['underscore', 'jquery'],
 			exports: 'Backbone'
 		},
+		'moment': { exports: 'moment' },
 		'underscore': { exports: '_' },
 		'highcharts': { exports: 'HighCharts' },
 		'highstock': { exports: 'HighCharts' },

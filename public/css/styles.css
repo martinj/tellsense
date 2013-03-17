@@ -69,3 +69,38 @@ body {
 .sidebar-nav {
   padding: 9px 0;
 }
+
+.latest-readings {
+	text-align: center;
+}
+
+.latest-readings .sensor-value {
+	vertical-align: middle;
+	font-weight: bold;
+	padding-top: 7px;
+	margin-right: 5px;
+	line-height: 35px;
+	display: inline-block;
+}
+
+.icon.icon-temp,
+.icon.icon-humidity {
+	opacity: 0.7;
+	width: 24px;
+	height: 25px;
+	background: url('../img/value-icons.png') no-repeat;
+}
+
+.icon.icon-humidity {
+	background-position: 0 0;
+	margin-right: 6px;
+}
+
+.icon.icon-temp {
+	background-position: -24px 0px;
+}
+
+.timeago {
+	font-size: 12px;
+	color: #ccc;
+}

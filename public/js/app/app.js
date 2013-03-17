@@ -44,7 +44,6 @@ define(function (require, exports, module) {
 		 */
 		home: function () {
 			this.$mainDiv.html(this.homeView.render().el);
-			this.homeView.renderSensorGauges();
 		},
 
 		/**
