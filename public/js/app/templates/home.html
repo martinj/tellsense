@@ -18,14 +18,18 @@
 						<div class="caption latest-readings">
 							<h5>${sensor.name}</h5>
 							<div>
-								{{if sensor.latestReading.temp}}
-								<span class="icon icon-temp"></span><span class="sensor-value">${sensor.latestReading.temp}°C</span>
-								{{/if}}
-								{{if sensor.latestReading.humidity}}
-								<span class="icon icon-humidity"></span><span class="sensor-value">${sensor.latestReading.humidity}%</span>
-								{{/if}}
-								{{if sensor.latestReading.lastUpdated}}
-								<div class="timeago">${moment(sensor.latestReading.lastUpdated).fromNow()}</div>
+								{{if sensor.latestReading}}
+									{{if sensor.latestReading.temp}}
+									<span class="icon icon-temp"></span><span class="sensor-value">${sensor.latestReading.temp}°C</span>
+									{{/if}}
+									{{if sensor.latestReading.humidity}}
+									<span class="icon icon-humidity"></span><span class="sensor-value">${sensor.latestReading.humidity}%</span>
+									{{/if}}
+									{{if sensor.latestReading.lastUpdated}}
+									<div class="timeago">${moment(sensor.latestReading.lastUpdated).fromNow()}</div>
+									{{/if}}
+								{{else}}
+									<div class="timeago">No readings available</div>
 								{{/if}}
 							</div>
 						</div>

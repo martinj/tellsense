@@ -9,6 +9,7 @@ require({
 		'underscore': '../vendor/underscore-min',
 		'highcharts': '../vendor/highcharts/highcharts',
 		'highstock': '../vendor/highcharts/highstock',
+		'highcharts.exporting': '../vendor/highcharts/modules/exporting',
 		'highcharts.more': '../vendor/highcharts/highcharts-more'
 	},
 
@@ -24,7 +25,8 @@ require({
 		'underscore': { exports: '_' },
 		'highcharts': { exports: 'HighCharts' },
 		'highstock': { exports: 'HighCharts' },
-		'highcharts.more': ['highcharts', 'highstock']
+		'highcharts.more': ['highcharts', 'highstock'],
+		'highcharts.exporting': ['highcharts', 'highstock']
 	}
 },
 [
@@ -37,6 +39,7 @@ function (require) {
 		'app',
 		'jquery.tmpl',
 		'highcharts.more',
+		'highcharts.exporting',
 		'bootstrap'
 	], function ($, App) {
 		$(function () {

@@ -38,6 +38,12 @@ define(function (require) {
 					renderTo: $div.get(0),
 					zoomType: 'x'
 				},
+				exporting: {
+					enabled: true
+				},
+				credits: {
+					enabled: false
+				},
 				rangeSelector: {
 					buttons: [{
 						type: 'day',
