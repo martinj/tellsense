@@ -15,7 +15,7 @@ body {
 }
 
 /* Wrapper for page content to push down footer */
-#content {
+.content-wrap {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
@@ -23,8 +23,8 @@ body {
 	margin: 0 auto -40px;
 }
 
-#content > .container-fluid,
-#content > .container {
+.content-wrap > .container-fluid,
+.content-wrap > .container {
 	padding-top: 60px;
 }
 
@@ -103,4 +103,13 @@ body {
 .timeago {
 	font-size: 12px;
 	color: #ccc;
+}
+
+li.sensor-info {
+	min-width: 160px;
+}
+
+#loading-indicator {
+	display: none;
+	opacity: 0.6;
 }

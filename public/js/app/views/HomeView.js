@@ -11,7 +11,7 @@ define(function (require) {
 	 * @constructor
 	 */
 	return Backbone.View.extend({
-		className: 'container',
+		className: 'container-fluid',
 
 		/**
 		 * Will be called when creating the instance.

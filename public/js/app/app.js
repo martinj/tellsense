@@ -22,6 +22,14 @@ define(function (require, exports, module) {
 		 * Constructor
 		 */
 		initialize: function () {
+			$(document).ajaxSend(function () {
+				$('#loading-indicator').show();
+			});
+
+			$(document).ajaxComplete(function () {
+				$('#loading-indicator').hide();
+			});
+
 			this.$mainDiv = $('#content');
 			this.sensorViews = {};
 			this.sensors = new SensorCollection();
@@ -60,6 +68,7 @@ define(function (require, exports, module) {
 		 * @param  {Number} days how far back to fetch
 		 */
 		sensor: function (id, type, days) {
+			this.$mainDiv.html('');
 			var self = this,
 				model = this.sensors.get(id),
 				view = this.sensorViews[id];
@@ -69,8 +78,8 @@ define(function (require, exports, module) {
 				this.sensorViews[id] = view;
 			}
 
-			this.$mainDiv.html(view.render().el);
 			model.fetchChartData(type, days).then(function () {
+				self.$mainDiv.html(view.render().el);
 				view.renderChart();
 			});
 		}

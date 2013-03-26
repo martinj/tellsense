@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row-fluid">
 	<div class="span2">
 		<div class="well sidebar-nav">
 			<ul class="nav nav-list">
@@ -11,10 +11,9 @@
 		</div>
 	</div>
 	<div class="span10">
-		<!-- <div class="row-fluid"> -->
 			<ul class="thumbnails">
 				{{each(i, sensor) sensors}}
-					<li class="span2">
+					<li class="span2 sensor-info">
 						<div class="caption latest-readings">
 							<h5>${sensor.name}</h5>
 							<div>
@@ -36,6 +35,5 @@
 					</li>
 				{{/each}}
 			<ul>
-		<!-- </div> -->
 	</div>
 </div>
