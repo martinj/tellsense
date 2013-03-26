@@ -114,9 +114,13 @@ define(function (require) {
 				}],
 				tooltip: {
 					formatter: function () {
-						return Highcharts.dateFormat('%a %Y-%m-%d %H:%M', this.x) + '<br>' +
-							'Temperature: ' + this.points[0].y.toFixed(1) + '°C<br>' +
-							'Humidity: ' + this.points[1].y.toFixed(1) + '%';
+						var m = Highcharts.dateFormat('%a %Y-%m-%d %H:%M', this.x) + '<br>' +
+							'Temperature: ' + this.points[0].y.toFixed(1) + '°C';
+
+						if (this.points.length > 1) {
+							m += '<br>Humidity: ' + this.points[1].y.toFixed(1) + '%';
+						}
+						return m;
 					}
 				},
 				legend: {
