@@ -23,6 +23,7 @@ module.exports = {
 	},
 
 	mongodb: {
-		uri: 'mongodb://localhost/tellsense' //tip try using it with cloud mongoservice if you want to spare your raspberry pi of writes http://mongolab.com
+		//dont forget to set ?auto_reconnect at the end of mongouri otherwise you might end up with no open connection errors.
+		uri: 'mongodb://localhost/tellsense?auto_reconnect' //tip try using it with cloud mongoservice if you want to spare your raspberry pi of writes http://mongolab.com
 	}
 };
