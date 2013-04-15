@@ -9,14 +9,22 @@ It features a sensor logging part and a web part for viewing charts.
 
 ![](https://www.evernote.com/shard/s1/sh/437358fe-42c5-4b96-bc65-e569d17a3f03/f3139d96b30dea858deebff54ec8c6b2/res/8468e23d-2fbf-4d8a-8c2d-fe34a3b1b7c7/skitch.png)
 
-## How to get it up and running
+## Getting Started
 
+Make sure you have node installed first [download](http://nodejs.org/download).
+
+	$ git clone git@github.com:martinj/tellsense.git
+	$ cd tellsense
 	$ npm install
 	$ cp config-example.js config.js
 
 Modify the config.js to with your settings the start.
 
 	$ npm start
+
+or
+
+	$ node app.js
 
 
 ## Cli Sensor Logger
