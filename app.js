@@ -18,6 +18,7 @@ app.configure(function () {
 	app.set('port', config.port);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
+	app.use(express.compress());
 	app.use(express.favicon());
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
@@ -55,6 +56,10 @@ app.post('/login',
 if (config.sensorLogger.autoStart) {
 	new SensorLogger(new Telldus(config.telldus), config.sensorLogger).start();
 }
+
+//temp fix for Recursive process.nextTick detected error when using node >= 0.10
+//https://github.com/LearnBoost/monk/issues/33
+process.maxTickDepth = 40000;
 
 http.createServer(app).listen(app.get('port'), function () {
 	console.log("TellSense server listening on port " + app.get('port'));
