@@ -13,7 +13,7 @@ It features a sensor logging part and a web part for viewing charts.
 
 Make sure you have node installed first [download](http://nodejs.org/download).
 
-	$ git clone git@github.com:martinj/tellsense.git
+	$ git clone https://github.com/martinj/tellsense.git
 	$ cd tellsense
 	$ npm install
 	$ cp config-example.js config.js
